@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: cr.yandex/crpufe9dqcko3m9fa2eh/statusboard-frontend:latest
+          image: cr.yandex/crp0s4jsnu8fqmt6c2lv/statusboard-frontend:latest
           ports:
             - containerPort: 8080
           resources:
