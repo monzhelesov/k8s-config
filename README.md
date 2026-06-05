@@ -27,19 +27,18 @@ Kubernetes манифесты для проекта StatusBoard.
 
 ## Мониторинг
 
-kube-prometheus stack — Prometheus, Grafana, Alertmanager, node-exporter:
-
     helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
     helm repo update
     helm upgrade --install monitoring prometheus-community/kube-prometheus-stack \
       --namespace monitoring \
       --set grafana.service.type=ClusterIP \
       --set grafana.adminPassword=admin123 \
+      --set grafana.grafana\\.ini.server.domain=<INGRESS_IP> \
+      --set grafana.grafana\\.ini.server.root_url="%(protocol)s://%(domain)s/grafana/" \
+      --set grafana.grafana\\.ini.server.serve_from_sub_path=true \
       --set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false
 
 ## Ingress
-
-Один внешний IP для всех сервисов:
 
     helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
     helm repo update
@@ -49,5 +48,5 @@ kube-prometheus stack — Prometheus, Grafana, Alertmanager, node-exporter:
       --set controller.service.type=LoadBalancer
 
 После получения IP:
-- Приложение: http://IP/
-- Grafana: http://IP/grafana (admin / admin123)
+- Приложение: http://<INGRESS_IP>/
+- Grafana: http://<INGRESS_IP>/grafana (admin / admin123)
