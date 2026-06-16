@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: cr.yandex/crp0s4jsnu8fqmt6c2lv/statusboard-api:latest
+          image: cr.yandex/crps1pvt0a5d4tpsp27l/statusboard-api:latest
           ports:
             - containerPort: 8000
           resources:

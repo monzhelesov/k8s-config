@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: statusboard-rolebinding
+  namespace: statusboard
+subjects:
+  - kind: ServiceAccount
+    name: statusboard-sa
+    namespace: statusboard
+roleRef:
+  kind: Role
+  name: statusboard-role
+  apiGroup: rbac.authorization.k8s.io
